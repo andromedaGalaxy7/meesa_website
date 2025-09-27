@@ -4,9 +4,60 @@
         <title>
             Welcome to Aadesh-Verse
         </title>
-    </head>
 
+        <style>
+            *{
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                min-height: 100vh;
+                background-image: url("./images/excavator.png");
+                background-attachment: fixed;
+                background-size:cover;
+            }
+
+            #construction_sign{
+                display: none;
+            }
+
+            #clickable{
+                position: fixed;
+                right: -0%;
+                bottom: -0%;
+            }
+        </style>
+    </head>
 <body>
-    
+    <img id="construction_sign" src="./images/sign3.png" alt="Website Under Construction Sign">
+    <canvas id="clickable"></canvas>
+
+    <script>
+        const img = document.getElementById("construction_sign");
+        const canvas = document.getElementById("clickable");
+        const ctx = canvas.getContext("2d");
+
+        img.onload = () => {
+            canvas.height = 0.5 * window.innerHeight;   // original width of the image
+            canvas.width = 0.52 * canvas.height;
+        // draw the preloaded image onto the canvas
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+
+        // click detection
+        canvas.addEventListener("mousemove", (e) => {
+        const x = e.offsetX;
+        const y = e.offsetY;
+        const pixel = ctx.getImageData(x, y, 1, 1).data;
+        if (pixel[3] > 0) { // alpha > 0 = non-transparent
+            canvas.style.cursor = "pointer";
+            }
+            else{
+                canvas.style.cursor = "default";
+            }
+        });
+    </script>
+
 </body>
 </html>
