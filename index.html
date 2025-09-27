@@ -2,10 +2,11 @@
 <html>
     <head>
         <title>
-            Welcome to Neemo-Verse
+            Miku-Land is under construction
         </title>
 
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
             *{
                 margin: 0;
                 box-sizing: border-box;
@@ -27,11 +28,103 @@
                 right: -0%;
                 bottom: -0%;
             }
+
+            #notice{
+                position: fixed;
+                left: 15%;
+                top: 15%;
+                width: 70vw;
+                height: 70vh;
+                background-color: rgba(142, 208, 207, 0.95);
+                border: 8px #3eccd9 solid;
+                overflow-y: scroll;
+            }            
+
+            #notice .inner{
+                padding: 2%;
+                position: relative;
+            }
+            
+            #close_btn{
+                position: absolute;
+                right: 1%;
+                top: 1%;
+                width: 40px;
+                height: 40px;
+                font-size: x-large;
+                text-align: center;
+                color:lightblue;
+                background-color: rgba(76, 0, 130, 0.651);
+                color: white;
+                transition: 0.3s;
+            }
+
+            #close_btn:hover{
+                background-color: rgba(76, 0, 130, 1);
+                cursor: pointer;
+            }
+
+
+            #notice .inner .title{
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                text-transform: uppercase;
+            }
+
+            #notice .inner .title #emblem{
+                width: 20%;
+            }
+
+            #notice .inner .title #title{
+                width: 98%;
+            }
+
+            #notice .inner h2{
+                display: flex;
+                justify-content: center;
+                font-family: 'Bungee';
+                color: #0077d1;
+            }
+            
+            #notice .inner pre{
+                font-family:    sans-serif;
+                padding: 20px;
+                font-size: 1.3rem;
+                color: #270365;
+            }
+
         </style>
     </head>
 <body>
     <img id="construction_sign" src="./images/sign3.png" alt="Website Under Construction Sign">
     <canvas id="clickable"></canvas>
+
+    <div id="notice">
+        <div class="inner">
+            <button id="close_btn">x</button>  
+            <div class="title">
+                <img id="emblem" src="images/miku_emblem.png">
+                <img id="title" src="images/government.png">
+            </div>
+
+            <h2>[ Attention&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;citizens ]</h2>
+            <pre>
+                This is an official announcement from the Miku-Land Department of Web Management.
+                Please be informed that the website you are attempting to access is currently under construction,
+                 and not available for use at this time.
+
+                <strong>Effective immediately:</strong>
+                &bull; All services and online resources on this platform are temporarily inaccessible.
+                &bull; We apologize for any inconvenience caused and appreciate your patience.
+                &bull; Updates and full access will be provided as soon as construction is complete.
+                &bull; For inquiries, please contact the Miku-Land Web Administration Helpdesk.
+
+                Issued on: 28 September 2025
+                Reference Code: NWA-UC-2025
+            </pre>
+        </div>
+    </div>
 
     <script>
         const img = document.getElementById("construction_sign");
@@ -45,7 +138,7 @@
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         };
 
-        // click detection
+        // hover detection
         canvas.addEventListener("mousemove", (e) => {
         const x = e.offsetX;
         const y = e.offsetY;
@@ -57,6 +150,17 @@
                 canvas.style.cursor = "default";
             }
         });
+
+        // click detection
+        canvas.addEventListener("click", (e) => {
+        const x = e.offsetX;
+        const y = e.offsetY;
+        const pixel = ctx.getImageData(x, y, 1, 1).data;
+        if (pixel[3] > 0) { // alpha > 0 = non-transparent
+            console.log("omg clicked !!!");
+            }
+        });
+
     </script>
 
 </body>
