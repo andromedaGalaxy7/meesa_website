@@ -38,6 +38,7 @@
                 background-color: rgba(142, 208, 207, 0.95);
                 border: 8px #3eccd9 solid;
                 overflow-y: scroll;
+                display: none;
             }            
 
             #notice .inner{
@@ -102,7 +103,7 @@
 
     <div id="notice">
         <div class="inner">
-            <button id="close_btn">x</button>  
+            <button id="close_btn" onclick="close_notice()">x</button>  
             <div class="title">
                 <img id="emblem" src="images/miku_emblem.png">
                 <img id="title" src="images/government.png">
@@ -151,15 +152,28 @@
             }
         });
 
-        // click detection
+        // click detection and notice display toggling
         canvas.addEventListener("click", (e) => {
         const x = e.offsetX;
         const y = e.offsetY;
         const pixel = ctx.getImageData(x, y, 1, 1).data;
         if (pixel[3] > 0) { // alpha > 0 = non-transparent
-            console.log("omg clicked !!!");
+            const notice = document.getElementById("notice");
+            display_status = window.getComputedStyle(notice).display;
+            if(display_status == "none"){
+                notice.style.display = "block";
+            }
+            else{
+                close_notice();
+            }
             }
         });
+
+        // close the thing
+        function close_notice(){
+            const notice = document.getElementById("notice");
+            notice.style.display = "none";
+        }
 
     </script>
 
