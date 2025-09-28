@@ -33,12 +33,13 @@
                 position: fixed;
                 left: 15%;
                 top: 15%;
-                width: 70vw;
-                height: 70vh;
+                /* width: 70vw;
+                height: 70vh; */
                 background-color: rgba(142, 208, 207, 0.95);
                 border: 8px #3eccd9 solid;
                 overflow-y: scroll;
-                display: none;
+                transition: opacity 0.3s;
+                transition: width 0.5s ease, height 0.5s ease;
             }            
 
             #notice .inner{
@@ -95,13 +96,29 @@
                 color: #270365;
             }
 
+            /*
+                Only for animation
+            */
+
+            .hidden_notice{
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .visible_notice{
+                opacity: 1;
+                width: 70%;
+                height: 70%;
+            }
+
         </style>
     </head>
 <body>
     <img id="construction_sign" src="./images/sign3.png" alt="Website Under Construction Sign">
     <canvas id="clickable"></canvas>
 
-    <div id="notice">
+    <div id="notice" class="hidden_notice">
         <div class="inner">
             <button id="close_btn" onclick="close_notice()">x</button>  
             <div class="title">
@@ -159,20 +176,19 @@
         const pixel = ctx.getImageData(x, y, 1, 1).data;
         if (pixel[3] > 0) { // alpha > 0 = non-transparent
             const notice = document.getElementById("notice");
-            display_status = window.getComputedStyle(notice).display;
-            if(display_status == "none"){
-                notice.style.display = "block";
+                //notice.style.display = "block";
+                notice.classList.add("visible_notice");
+                notice.classList.remove("hidden_notice");
             }
-            else{
-                close_notice();
-            }
-            }
+           
         });
 
         // close the thing
         function close_notice(){
             const notice = document.getElementById("notice");
-            notice.style.display = "none";
+            //notice.style.display = "none";
+            notice.classList.remove("visible_notice");
+            notice.classList.add("hidden_notice");
         }
 
     </script>
