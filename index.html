@@ -33,13 +33,12 @@
                 position: fixed;
                 left: 15%;
                 top: 15%;
-                /* width: 70vw;
-                height: 70vh; */
-                background-color: rgba(142, 208, 207, 0.95);
+                width: 70%;
+                height: 70%;
+                background-color: rgba(142, 208, 207, 0.96);
                 border: 8px #3eccd9 solid;
                 overflow-y: scroll;
-                transition: opacity 0.3s;
-                transition: width 0.5s ease, height 0.5s ease;
+                transition: opacity 0.7s, transform 0.6s;
             }            
 
             #notice .inner{
@@ -102,14 +101,12 @@
 
             .hidden_notice{
                 opacity: 0;
-                width: 0;
-                height: 0;
+                transform: scale(0);
             }
 
             .visible_notice{
                 opacity: 1;
-                width: 70%;
-                height: 70%;
+                transform: scale(1);
             }
 
         </style>
@@ -177,8 +174,8 @@
         if (pixel[3] > 0) { // alpha > 0 = non-transparent
             const notice = document.getElementById("notice");
                 //notice.style.display = "block";
-                notice.classList.add("visible_notice");
                 notice.classList.remove("hidden_notice");
+                notice.classList.add("visible_notice");
             }
            
         });
