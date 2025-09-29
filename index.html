@@ -144,7 +144,7 @@
     <script>
         const img = document.getElementById("construction_sign");
         const canvas = document.getElementById("clickable");
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
         img.onload = () => {
             canvas.height = 0.5 * window.innerHeight;   // original width of the image
