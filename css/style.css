@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+:root{
+    --notice-background: rgba(142, 208, 207, 0.96);
+    --close-btn-background: rgba(76, 0, 130, 0.651);
+    --close-btn-hover: rgba(76, 0, 130, 1);
+    --notice-title: #0077d1;
+    --notice-text: #270365;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background-image: url("../images/excavator.png");
+    background-attachment: fixed;
+    background-size:cover;
+}
+
+#construction_sign{
+    display: none;
+}
+
+#clickable{
+    position: fixed;
+    right: -0%;
+    bottom: -0%;
+}
+
+#notice{
+    position: fixed;
+    left: 15%;
+    top: 15%;
+    width: 70%;
+    height: 70%;
+    background-color: var(--notice-background, blue);
+    border: 8px #3eccd9 solid;
+    overflow-y: scroll;
+    transition: opacity 0.7s, transform 0.6s;
+}            
+
+#notice .inner{
+    padding: 2%;
+    position: relative;
+}
+
+#close_btn{
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    width: 40px;
+    height: 40px;
+    font-size: x-large;
+    text-align: center;
+    color:lightblue;
+    background-color: var(--close-btn-background, purple);
+    color: white;
+    transition: 0.3s;
+}
+
+#close_btn:hover{
+    background-color: var(--close-btn-hover, indigo);
+    cursor: pointer;
+}
+
+
+#notice .inner .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-transform: uppercase;
+}
+
+#notice .inner .title #emblem{
+    width: 15%;
+}
+
+#notice .inner .title #title{
+    width: 70%;
+}
+
+#notice .inner h2{
+    display: flex;
+    justify-content: center;
+    font-family: 'Bungee';
+    color: var(--notice-title, darkblue);
+}
+
+#notice .inner pre{
+    font-family:    sans-serif;
+    padding: 20px;
+    font-size: 1.3rem;
+    color: var(--notice-text, blue);
+}
+
+/*
+    Only for animation
+*/
+
+.hidden_notice{
+    opacity: 0;
+    transform: scale(0);
+}
+
+.visible_notice{
+    opacity: 1;
+    transform: scale(1);
+}
